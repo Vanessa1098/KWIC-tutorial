@@ -1,14 +1,14 @@
 package sg.edu.nus.comp.cs3219.module;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.HashSet;
-import java.util.Set;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import sg.edu.nus.comp.cs3219.model.LineStorage;
+
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+import static org.junit.Assert.assertEquals;
 
 public class CircularShifterTest {
 	LineStorage inputLineStorage;
@@ -34,6 +34,26 @@ public class CircularShifterTest {
 
 		assertEquals("Day after Tomorrow the", afterShiftLineStorage.get(0).toString());
 		assertEquals("Tomorrow the Day after", afterShiftLineStorage.get(1).toString());
+	}
+
+	@Test
+	public void test1() {
+		//TODO: Write testing code here
+		inputLineStorage.addLine("Avenger: Infinity War");
+		Iterator<String> it = shifter.getIgnoreWords().iterator();
+		while(it.hasNext()) {
+			assertEquals(inputLineStorage.get(0).toString().contains(it.next()), false);
+		}
+	}
+
+	@Test
+	public void test2() {
+		//TODO: Write testing code here
+		inputLineStorage.addLine("The Day after Tomorrow");
+		Iterator<String> it = shifter.getIgnoreWords().iterator();
+		while(it.hasNext()) {
+			assertEquals(inputLineStorage.get(0).toString().contains(it.next()), true);
+		}
 	}
 
 }
